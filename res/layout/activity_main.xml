@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <AutoCompleteTextView
+        android:id="@+id/type"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="15sp"
+        android:hint="@string/scala_iniziale"
+        android:layout_marginBottom="15sp"
+        android:layout_width="fill_parent"
+        android:completionThreshold="1"
+        android:layout_height="wrap_content"/>
+    
+    <AutoCompleteTextView
+        android:id="@+id/conv_to"
+        android:hint="@string/conv"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginBottom="15sp"
+        android:layout_width="fill_parent"
+        android:completionThreshold="1"
+        android:layout_height="wrap_content"/>
+    
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/value"
+        android:inputType="textPassword|number" 
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginBottom="15sp"/>
+    
+    <Button android:id="@+id/avanti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:text="@string/btn"
+        android:layout_marginLeft="15sp"/>
+    
+    <TextView 
+        android:id="@+id/tv"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginBottom="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    
+    
+    </LinearLayout>
