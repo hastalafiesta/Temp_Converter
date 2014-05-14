@@ -1,18 +1,20 @@
 package com.hasta.temp_converter;
 
 
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	private AutoCompleteTextView type, conv_to;
+	private Spinner initial_temp, conv_to;
 	private EditText value;
 	private double conv;
 	private Button btn;
@@ -22,15 +24,15 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		ArrayAdapter<String> paths = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.temp));
-        type = (AutoCompleteTextView)
-                findViewById(R.id.type);        
-        type.setAdapter(paths);
+        initial_temp = (Spinner)
+                findViewById(R.id.type); 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.temp, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        initial_temp.setAdapter(adapter);
         
-        conv_to = (AutoCompleteTextView)
+        conv_to = (Spinner)
                 findViewById(R.id.conv_to);        
-        conv_to.setAdapter(paths);
+        conv_to.setAdapter(adapter);
         tv=(TextView)findViewById(R.id.tv);
         btn=(Button)findViewById(R.id.avanti);
         value=(EditText)findViewById(R.id.value);
@@ -42,26 +44,34 @@ public class MainActivity extends Activity {
             }
         });
      }
-	
+	public String format(double temp, String sym, String sym2) {
+		DecimalFormat f = new DecimalFormat("00.00");
+		String string = f.format(temp);
+		tv.setBackgroundResource(R.drawable.custom);
+		tv.setPadding(10, 10, 10, 10);
+        tv.setText(value.getText().toString()+sym2+" corrispondono a "+string+sym);
+        return string;  
+        
+	}
 	public void convertTemp(){
-		if (type.getText().toString().equals("celsius")&& conv_to.getText().toString().equals("fahrenheit")){
+		if (initial_temp.getSelectedItem().equals("celsius")&& conv_to.getSelectedItem().equals("fahrenheit")){			
 			conv=(Float.parseFloat(value.getText().toString())*1.8)+32;
-			tv.setText(String.valueOf(conv)+"° F");
-		}else if(type.getText().toString().equals("celsius")&& conv_to.getText().toString().equals("kelvin")){
+			format(conv, "° F", "° C");
+		}else if(initial_temp.getSelectedItem().equals("celsius")&& conv_to.getSelectedItem().equals("kelvin")){
 			conv=Float.parseFloat(value.getText().toString())+273.15;
-			tv.setText(String.valueOf(conv)+"° K");
-		}else if (type.getText().toString().equals("fahrenheit")&& conv_to.getText().toString().equals("celsius")){
+			format(conv, "° K", "° C");
+		}else if (initial_temp.getSelectedItem().equals("fahrenheit")&& conv_to.getSelectedItem().equals("celsius")){
 			conv=(Float.parseFloat(value.getText().toString())-32)/1.8;
-			tv.setText(String.valueOf(conv)+"° C");
-		}else if (type.getText().toString().equals("fahrenheit")&& conv_to.getText().toString().equals("kelvin")){
+			format(conv, "° C", "° F");
+		}else if (initial_temp.getSelectedItem().equals("fahrenheit")&& conv_to.getSelectedItem().equals("kelvin")){
 			conv=(Float.parseFloat(value.getText().toString())+459.67)/1.8;
-			tv.setText(String.valueOf(conv)+"° K");
-		}else if (type.getText().toString().equals("kelvin")&& conv_to.getText().toString().equals("celsius")){
+			format(conv, "° K", "° F");
+		}else if (initial_temp.getSelectedItem().equals("kelvin")&& conv_to.getSelectedItem().equals("celsius")){
 			conv=Float.parseFloat(value.getText().toString())-273.15;
-			tv.setText(String.valueOf(conv)+"° C");
-		}else if (type.getText().toString().equals("kelvin")&& conv_to.getText().toString().equals("fahrenheit")){
+			format(conv, "° C", "° K");
+		}else if (initial_temp.getSelectedItem().equals("kelvin")&& conv_to.getSelectedItem().equals("fahrenheit")){
 			conv=Float.parseFloat(value.getText().toString())*1.8-459.67;
-			tv.setText(String.valueOf(conv)+"° F");
+			format(conv, "° F", "° K");
 		}
 		
 	}
