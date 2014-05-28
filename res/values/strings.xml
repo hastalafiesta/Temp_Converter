@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Temp-converter</string>
-    <string name="scala_iniziale">Scala di partenza:</string>
-    <string name="conv">Selezionare scala in cui effettuare la conversione</string>
+    <string name="scala_iniziale">SELEZIONARE LA SCALA DI PARTENZA</string>
+    <string name="conv">SELEZIONARE LA SCALA IN CUI EFFETTUARE LA CONVERSIONE</string>
     <string name="hint">Inserire temperatura</string>
     <string name="btn">Converti</string>
     

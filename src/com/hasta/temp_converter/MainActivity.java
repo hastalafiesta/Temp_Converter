@@ -18,12 +18,13 @@ public class MainActivity extends Activity {
 	private EditText value;
 	private double conv;
 	private Button btn;
-	private TextView tv;
+	private TextView tv, effect;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		effect=(TextView)findViewById(R.id.effect);
+		effect.setSelected(true);
         initial_temp = (Spinner)
                 findViewById(R.id.type); 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.temp, android.R.layout.simple_spinner_item);
